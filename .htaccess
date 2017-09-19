@@ -1,0 +1,12 @@
+
+<IfModule mod_rewrite.c>
+
+	RewriteEngine on
+
+	RewriteCond %{ENV:REDIRECT_STATUS} ^$
+	RewriteRule ^index\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
+
+	RewriteCond $1 !^(index\.php|assets)
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+
+</IfModule>

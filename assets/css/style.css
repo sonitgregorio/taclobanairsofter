@@ -1,0 +1,16 @@
+.text_login{
+    font-size: 10px;
+}
+.hover_panel:hover{
+    background-color: #FFFFFF;
+    text-decoration: none;
+}
+.panel_height{
+
+}
+.img_style{
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    box-shadow: 0px 0px 9px 1px #a9a8a8;
+}

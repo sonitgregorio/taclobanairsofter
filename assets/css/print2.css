@@ -1,0 +1,173 @@
+body{
+    margin: 0px;
+    font-family: arial narrow;
+    font-size: 11px;
+    background-color: #eee;
+}
+
+table{
+    width: 100%;
+}
+
+.wrapper{
+    padding: 30px;
+    width: 816px;
+    margin: 60px auto;
+    box-shadow: 0px 0px 20px #bbb;
+    overflow: hidden;
+    background-color: #fff;
+    page-break-after:always;
+}
+
+.print-header{
+    width: 100%;
+    height: 50px;
+    background-color: #2F5836;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+}
+
+.table1{
+    float: left;
+    width: 64%;
+    padding-bottom: 10px;
+    padding-right: 0px;
+    border-right: 1px solid;
+}
+
+.table2{
+    float: left;
+    width: 35%;
+    padding-bottom: 10px;
+    margin-left: 0px;
+}
+
+td{
+    position: relative;
+    vertical-align: top;
+    text-align: left;
+}
+
+th{
+    position: relative;
+    border: 1px solid;
+}
+
+.underline{
+    border-bottom: 1px solid
+}
+
+.lc-logo{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.lc-img{
+    width: 100px;
+    height: 130px;
+    float: right;
+    border: 1px solid;
+}
+
+.center{
+    text-align: center;
+}
+
+.tbl-bordered{
+    border-collapse: collapse;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.tbl-bordered tr td{
+    border: 1px solid;
+    font-weight: bold;
+    font-family: cambria;
+}
+
+.tbl-bordered tr th{
+    font-weight: bold;
+    font-family: cambria;
+}
+
+.tbl-bordered tr .no-line{
+    border-top: 0px solid;
+    border-bottom: 0px solid;
+    padding: 1px 2px 1px 2px;
+    font-size: 12px;
+}
+
+.p-small{
+    font-size: 10px;
+}
+
+.print{
+    padding: 5px 20px;
+    border-radius: 3px;
+    float: right;
+    margin: 12px 10px 12px 0px;
+    background-color: #eb9316;
+    color: #fcffaa;
+    border: 1px solid #fcffaa;
+}
+
+.print:hover {
+    background-color: #fca427;
+    cursor: pointer;
+    color: #fff;
+}
+
+h2, .legacy {
+    float: left;
+    padding-left: 10px;
+    position: relative;
+    color: #FFFF6F;
+}
+
+.tbl-bordered tr .no-left{
+    border-left: 0px solid;
+}
+
+.tbl-bordered tr .no-right{
+    border-right: 0px solid;
+}
+
+.a{
+    font-family: arial;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid
+}
+
+.main{
+    font-size: 18px;
+    font-family: Times New Roman;
+}
+
+.fontTimes{
+    font-family: Times New Roman;
+}
+
+.fontBrush{
+    font-family: Brush Script Std;
+}
+
+@media print{
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+    }
+    .print-header{
+        display: none;
+    }
+    .wrapper{
+        padding: 0px;
+        margin: 0px;
+        margin-top: 0px;
+        width: 100%;
+        border: none;
+    }
+}
