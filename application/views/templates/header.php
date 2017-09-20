@@ -17,6 +17,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/select2.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/select2-bootstrap.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/styles.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/product.css'); ?>">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- =============================================================================== -->
 <!--    <script type="text/javascript" src="--><?php //echo base_url('assets/js/javascript_functions.js'); ?><!--"></script>-->
 

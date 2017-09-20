@@ -73,3 +73,8 @@ $route['userManagement/edit/(:num)'] = 'admin/userManagement/$1';
 $route['save_contact'] = 'admin/save_contact';
 $route['userManagement/delete/(:num)'] = 'admin/deleteContact/$1';
 
+/*
+ * Store List
+ */
+
+$route['store'] = 'admin/store_list';

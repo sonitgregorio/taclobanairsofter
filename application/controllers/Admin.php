@@ -50,11 +50,14 @@ class Admin extends CI_Controller
 
         if (!$this->upload->do_upload('picture')) {
             print_r($this->upload->display_errors());
+            $filename = 'no_image.png';
         } else {
             $filename = $this->upload->data('file_name');
         }
         $this->load->model('home');
         $record_id = $this->input->post('record_id');
+
+
         $data = array(
             'item_name' => $this->input->post('item_name'),
             'quantity' => $this->input->post('quantity'),
@@ -181,4 +184,13 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success">Member Deleted.</div>');
         redirect('userManagement');
     }
+    public function store_list() {
+        $this->load->model('home');
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('templates/admin_nav');
+        $this->load->view('pages/admin/store');
+        $this->load->view('templates/footer');
+    }
+
 }
