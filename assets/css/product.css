@@ -210,11 +210,11 @@
 
 .product-info.smart-form .btn {
 
-    padding: 6px 12px;
+    /*padding: 6px 12px;*/
 
-    margin-left: 12px;
+    /*margin-left: 12px;*/
 
-    margin-top: -10px
+    /*margin-top: -10px*/
 
 }
 
@@ -632,59 +632,59 @@
 
 .btn-info{
 
-    border-radius: 0;
+    /*border-radius: 0;*/
 
-    position: relative;
+    /*position: relative;*/
 
-    color: #fff;
+    /*color: #fff;*/
 
-    border:1px solid transparent;
+    /*border:1px solid transparent;*/
 
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 
-    transition: all 0.40s ease 0s;
+    /*transition: all 0.40s ease 0s;*/
 
 }
 
 .btn-info:after{
 
-    content: "\f129";
+    /*content: "\f129";*/
 
-    font-family: fontawesome;
+    /*font-family: fontawesome;*/
 
-    position: absolute;
+    /*position: absolute;*/
 
-    right: 6px;
+    /*right: 6px;*/
 
-    top: -4px;
+    /*top: -4px;*/
 
-    opacity: 0;
+    /*opacity: 0;*/
 
-    color: #fff;
+    /*color: #fff;*/
 
-    transition: all 0.40s ease 0s;
+    /*transition: all 0.40s ease 0s;*/
 
 }
 
 .btn-info:hover:after{
 
-    top:40%;
+    /*top:40%;*/
 
-    opacity: 5;
+    /*opacity: 5;*/
 
 }
 
 .btn-info span{
 
-    display: block;
+    /*display: block;*/
 
-    transition: all 0.70s linear 0s;
+    /*transition: all 0.70s linear 0s;*/
 
 }
 
 .btn-info:hover span{
 
-    transform: translate(-9px);
+    /*transform: translate(-9px);*/
 
 }
 

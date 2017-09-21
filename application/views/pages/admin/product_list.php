@@ -100,7 +100,6 @@ $product_record = $this->home->getProducts();
                     <?php } ?>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
