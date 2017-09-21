@@ -81,4 +81,8 @@ Class Home extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('contacts');
     }
+    public function getCart(){
+        return $this->db->query("SELECT b.*, a.quantity q, a.price p FROM `cart` a, `products` b WHERE a.cid = '{$this->session->userdata('userid')}' AND a.product = b.id")->result_array();
+
+    }
 }

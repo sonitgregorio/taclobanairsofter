@@ -18,11 +18,9 @@ $product_record = $this->home->getProducts();
                 <div class="prod-info-main prod-wrap clearfix">
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-xs-12">
-                            <div class="product-image">
-                                <img src="/assets/images/<?= $val['image'] ?>" class="img-responsive"">
-                                <!--                                <span class="tag2 hot">-->
-                                <!--                                 SPECIAL-->
-                                <!--                               </span>-->
+                            <div class="product-image" style="padding-top: 0px;min-height: 200px">
+                                <img src="/assets/images/<?= $val['image'] ?>" class="img-responsive"
+                                     style="min-height:200px ">
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-12 col-xs-12">
@@ -47,18 +45,19 @@ $product_record = $this->home->getProducts();
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a href="#" class="btn btn-danger modal_click" data-param="<?= $val['id'] ?>"
-                                           data-param1="<?= $val['price'] ?>" data-param2="<?= $val['quantity'] ?>">Add to cart</a>
+                                           data-param1="<?= $val['price'] ?>" data-param2="<?= $val['quantity'] ?>"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;Add
+                                            to cart</a>
                                         <!--                                        <a href="javascript:void(0);" class="btn btn-info">More info</a>-->
                                     </div>
-                                    <!--                                    <div class="col-md-12">-->
-                                    <!--                                        <div class="rating">Rating:-->
-                                    <!--                                            <label for="stars-rating-5"><i class="fa fa-star text-danger"></i></label>-->
-                                    <!--                                            <label for="stars-rating-4"><i class="fa fa-star text-danger"></i></label>-->
-                                    <!--                                            <label for="stars-rating-3"><i class="fa fa-star text-danger"></i></label>-->
-                                    <!--                                            <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>-->
-                                    <!--                                            <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>-->
+                                    <!--                                        <div class="col-md-12">-->
+                                    <!--                                            <div class="rating">Rating:-->
+                                    <!--                                                <label for="stars-rating-5"><i class="fa fa-star text-danger"></i></label>-->
+                                    <!--                                                <label for="stars-rating-4"><i class="fa fa-star text-danger"></i></label>-->
+                                    <!--                                                <label for="stars-rating-3"><i class="fa fa-star text-danger"></i></label>-->
+                                    <!--                                                <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>-->
+                                    <!--                                                <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>-->
+                                    <!--                                            </div>-->
                                     <!--                                        </div>-->
-                                    <!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -74,7 +73,7 @@ $product_record = $this->home->getProducts();
 
                 <!-- Modal content-->
 
-                <form class="form-horizontal" action="">
+                <form class="form-horizontal" action="/save_to_cart" method="post">
                     <div class="modal-content">
                         <div class="modal-header panel-heading search">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -84,10 +83,12 @@ $product_record = $this->home->getProducts();
                             <div class="show_alert">
 
                             </div>
+                            <input type="hidden" name="pid" value="">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Price</label>
                                 <div class="col-sm-9">
                                     <input type="text" disabled name="price_modal" class="form-control">
+                                    <input type="hidden" name="price_modals" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -99,14 +100,13 @@ $product_record = $this->home->getProducts();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary button_save" data-dismiss="modal" disabled>Save</button>
+                            <button type="submit" class="btn btn-primary button_save" disabled>Save</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <!--End Modal Here-->
-
         <br/>
     </div>
 </div>

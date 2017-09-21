@@ -78,3 +78,5 @@ $route['userManagement/delete/(:num)'] = 'admin/deleteContact/$1';
  */
 
 $route['store'] = 'admin/store_list';
+$route['save_to_cart'] = 'admin/save_to_cart';
+$route['my_cart'] = 'admin/my_cart';

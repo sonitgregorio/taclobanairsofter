@@ -27,7 +27,8 @@ class Admin extends CI_Controller
                 'serial' => '',
                 'quantity' => '',
                 'price' => '',
-                'image' => 'no_image.png'
+                'image' => 'no_image.png',
+                'short_description' => ''
             );
         } else {
             $data['product'] = $this->home->getProductRecord($id);
@@ -63,7 +64,8 @@ class Admin extends CI_Controller
             'quantity' => $this->input->post('quantity'),
             'price' => $this->input->post('price'),
             'serial' => $this->input->post('serial'),
-            'image' => $filename
+            'image' => $filename,
+            'short_description' => $this->input->post('short_description')
         );
 
         if ($record_id == '') {
@@ -184,12 +186,43 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success">Member Deleted.</div>');
         redirect('userManagement');
     }
-    public function store_list() {
+
+    public function store_list()
+    {
         $this->load->model('home');
         $this->load->view('templates/header');
         $this->load->view('templates/nav');
         $this->load->view('templates/admin_nav');
         $this->load->view('pages/admin/store');
+        $this->load->view('templates/footer');
+    }
+
+    public function save_to_cart()
+    {
+        $quantity = $this->input->post('quantity');
+        $price = $this->input->post('price_modals');
+        $cid = $this->session->userdata('userid');
+        $pid = $this->input->post('pid');
+        $status = 0;
+
+        $data = array(
+            'product' => $pid,
+            'quantity' => $quantity,
+            'cid' => $cid,
+            'price' => $price,
+            'status' => $status
+        );
+        $this->db->insert('cart', $data);
+        redirect('/store');
+    }
+
+    public function my_cart()
+    {
+        $this->load->model('home');
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('templates/admin_nav');
+        $this->load->view('pages/admin/cart');
         $this->load->view('templates/footer');
     }
 

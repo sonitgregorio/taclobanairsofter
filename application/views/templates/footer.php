@@ -13,6 +13,8 @@
             quantity = $(this).data('param2');
             console.log(id + ',' + price + ',' + quantity);
             $('input[name=price_modal]').val(price);
+            $('input[name=price_modals]').val(price);
+            $('input[name=pid]').val(id);
             $('.cart_modal').modal('show');
         });
 

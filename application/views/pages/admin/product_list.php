@@ -57,9 +57,15 @@ $product_record = $this->home->getProducts();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="" class="col-sm-3 control-label">price</label>
+                        <label for="" class="col-sm-3 control-label">Price</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="price" required value="<?= $product['price'] ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">Description</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="short_description" required value="<?= $product['short_description'] ?>">
                         </div>
                     </div>
                     <div class="form-group">
