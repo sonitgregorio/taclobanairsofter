@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2017 at 04:47 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: Sep 22, 2017 at 08:23 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `tag`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `product` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `price` decimal(11,2) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `product`, `quantity`, `cid`, `price`, `status`) VALUES
+(1, 2, 2, 1, '300.00', 0);
 
 -- --------------------------------------------------------
 
@@ -36,16 +60,17 @@ CREATE TABLE `contacts` (
   `location` varchar(255) NOT NULL,
   `contact` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL
+  `gender` varchar(255) NOT NULL,
+  `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `dob`, `pob`, `work`, `location`, `contact`, `email`, `gender`) VALUES
-(1, 'John Paul', 'Bueno', '1993-02-07', 'Alang-Alang Leyte', 'Developer', 'Tacloban', '09172580624', 'support@gmail.com', 'male'),
-(2, 'Dearly', 'IDK', '0000-00-00', 'Tacloban City', '9172580624', 'Tacloban City', '+639172580624', 'test@gmail.com', 'male');
+INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `dob`, `pob`, `work`, `location`, `contact`, `email`, `gender`, `image`) VALUES
+(1, 'John Pauls', 'Bueno', '1993-02-07', 'Alang-Alang Leyte', 'Developer', 'Tacloban', '09172580624', 'support@gmail.com', 'male', '1258235de1be29d948095fa4d681a08e.png'),
+(2, 'Dearly', 'IDK', '0000-00-00', 'Tacloban City', '9172580624', 'Tacloban City', '+639172580624', 'test@gmail.com', 'male', 'person.png');
 
 -- --------------------------------------------------------
 
@@ -78,17 +103,18 @@ CREATE TABLE `products` (
   `quantity` int(11) NOT NULL,
   `serial` varchar(255) NOT NULL,
   `price` double(11,2) NOT NULL,
-  `image` text NOT NULL
+  `image` text NOT NULL,
+  `short_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `item_name`, `quantity`, `serial`, `price`, `image`) VALUES
-(2, 'Item 2', 20, '3587654', 300.00, 'no_image.png'),
-(3, 'test item 3', 20, '1324a682', 50.00, 'no_image.png'),
-(4, 'Product Image 1', 20, 'XYYTZZ', 50.00, '30c0ac69fb2acba74e56fbfd4138e4f9.png');
+INSERT INTO `products` (`id`, `item_name`, `quantity`, `serial`, `price`, `image`, `short_description`) VALUES
+(2, 'Item 2', 20, '3587654', 300.00, '41e94003ad95334c4e5fe43a7488b393.jpg', 'Sample Description for this item'),
+(3, 'test item 3', 20, '1324a682', 50.00, '4dce267dd0c505d418792c02bf6a46c3.jpg', 'Armalite'),
+(4, 'Product Image 1', 20, 'XYYTZZ', 50.00, '0c074389da664ac791fcbb71d882a88a.jpg', 'Gun');
 
 -- --------------------------------------------------------
 
@@ -119,6 +145,12 @@ INSERT INTO `users` (`id`, `password`, `position`, `pid`, `username`) VALUES
 --
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -147,6 +179,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -165,7 +202,8 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

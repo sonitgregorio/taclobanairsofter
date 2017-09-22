@@ -34,3 +34,43 @@
         })
     });
 </script>
+<?php if (uri_string() == 'my_cart') { ?>
+    <script>
+        var url = window.location.href;
+        var searchString = url.search('paypal-home');
+        paypal.Button.render({
+            env: 'sandbox', // Or 'sandbox',
+            client: {
+                sandbox: 'AbtnoLFoAWj1wUFsY4HVHMgi8pLLZ-AY0CsuVgIRO7nH1erZ7hnHGeXk9s9Ze4c2YZ4kPxKKH0x22rYN',
+                production: ''
+            },
+            commit: true, // Show a 'Pay Now' button
+            payment: function (data, actions) {
+                var total = $('#total').html();
+                var totals = Number(total).toFixed(2);
+                var currency = 'PHP';
+                return actions.payment.create({
+                    transactions: [
+                        {
+                            amount: {
+                                total: totals,
+                                currency: currency
+                            }
+                        }
+                    ]
+                })
+                // Set up the payment here
+            },
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function (payment) {
+                    if (payment.state === 'approved') {
+
+                    } else {
+                        alert('Error Occured Please try again.');
+                    }
+                });
+                // Execute the payment here
+            }
+        }, '#paypal-button');
+    </script>
+<?php } ?>

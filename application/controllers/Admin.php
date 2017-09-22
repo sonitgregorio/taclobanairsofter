@@ -142,6 +142,7 @@ class Admin extends CI_Controller
             'pob' => $this->input->post('pob'),
             'location' => $this->input->post('location'),
             'email' => $this->input->post('email'),
+            'image' => 'person.png'
         );
 
 
@@ -201,7 +202,7 @@ class Admin extends CI_Controller
     {
         $quantity = $this->input->post('quantity');
         $price = $this->input->post('price_modals');
-        $cid = $this->session->userdata('userid');
+        $cid = $this->session->userdata('cid');
         $pid = $this->input->post('pid');
         $status = 0;
 
@@ -224,6 +225,53 @@ class Admin extends CI_Controller
         $this->load->view('templates/admin_nav');
         $this->load->view('pages/admin/cart');
         $this->load->view('templates/footer');
+    }
+
+    public function account_settings()
+    {
+        $this->load->model('home');
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('templates/admin_nav');
+        $this->load->view('pages/admin/account_settings');
+        $this->load->view('templates/footer');
+    }
+
+    public function save_account()
+    {
+        print_r($_REQUEST);
+
+        $config['upload_path'] = './assets/images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('picture')) {
+            print_r($this->upload->display_errors());
+            $filename = 'person.png';
+        } else {
+            $filename = $this->upload->data('file_name');
+        }
+
+        $data = array(
+            'first_name' => $_REQUEST['firstname'],
+            'last_name' => $_REQUEST['lastname'],
+            'dob' => $_REQUEST['dob'],
+            'pob' => $_REQUEST['pob'],
+            'work' => $_REQUEST['work'],
+            'location' => $_REQUEST['address'],
+            'contact' => $_REQUEST['contact'],
+            'email' => $_REQUEST['email'],
+        );
+
+        if ($filename != 'person.png')
+            $data['image'] = $filename;
+
+        $this->db->where('id', $this->session->userdata('cid'));
+        $this->db->update('contacts', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Account Successfully Updated.</div>');
+        redirect('/account_settings');
+
     }
 
 }

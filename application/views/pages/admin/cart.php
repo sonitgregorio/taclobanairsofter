@@ -35,14 +35,19 @@ $total = 0;
                         <td style="text-align: right"><?= $val['p'] ?></td>
                         <td style="text-align: right"><?= number_format($val['q'] * $val['p'], 2, '.', ',') ?></td>
                     </tr>
-                <?php } ?>
+                <?php
+                    $subtotal = $val['q'] * $val['p'];
+                    $total += $subtotal;
+                } ?>
                 <tr>
                     <th colspan="4" style="text-align: center">Grand Total</th>
-
-                    <th style="text-align: right"><b>2,0000</b></th>
+                    <th style="text-align: right"><span id="total"><?=  number_format($total, 2, '.', ',') ?></span></th>
                 </tr>
                 </tbody>
             </table>
+            <div  id="paypal-button" style="float: right;">
+
+            </div>
         </div>
 
 

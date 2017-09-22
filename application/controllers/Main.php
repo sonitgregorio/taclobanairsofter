@@ -23,6 +23,9 @@ class Main extends CI_Controller
         $result = $this->home->verify_user($username, $password);
         if(!empty($result)){
             $this->session->set_userdata('userid', $result['id']);
+            $this->session->set_userdata('cid', $result['pid']);
+            $this->session->set_userdata('img', $result['image']);
+            $this->session->set_userdata('name', $result['first_name'] . ' ' . $result['last_name']);
             redirect('/admin_home');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger">Invalid Username / Password</div>');

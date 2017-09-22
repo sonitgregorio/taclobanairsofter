@@ -72,6 +72,8 @@ $route['userManagement'] = 'admin/userManagement';
 $route['userManagement/edit/(:num)'] = 'admin/userManagement/$1';
 $route['save_contact'] = 'admin/save_contact';
 $route['userManagement/delete/(:num)'] = 'admin/deleteContact/$1';
+$route['account_settings'] = 'admin/account_settings';
+$route['save_account'] = 'admin/save_account';
 
 /*
  * Store List
