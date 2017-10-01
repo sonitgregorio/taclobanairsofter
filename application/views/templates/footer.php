@@ -3,10 +3,16 @@
 <script src="<?= base_url() ?>/assets/js/bootstrap.js"></script>
 <script src="<?= base_url() ?>/assets/js/jasny-bootstrap.min.js"></script>
 
-<script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
+
+<script>
     var quantity = 0;
+
+
     $(document).ready(function () {
+        $('.example_data').DataTable();
+
         $('.modal_click').click(function () {
             var id = $(this).data('param');
             var price = $(this).data('param1');
@@ -64,7 +70,7 @@
             onAuthorize: function (data, actions) {
                 return actions.payment.execute().then(function (payment) {
                     if (payment.state === 'approved') {
-
+                        window.location.href = 'http://taclobanairsofter/update_cart'
                     } else {
                         alert('Error Occured Please try again.');
                     }

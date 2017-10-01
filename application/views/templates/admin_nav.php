@@ -1,5 +1,3 @@
-
-
 <li class="list-group-item"><a class="menu" href="index.php?page=account">
         <span class="glyphicon glyphicon-cog"></span>&nbsp; &nbsp; Account Settings</a></li>
 
@@ -13,14 +11,27 @@
                 </div>
 
             </div>
-            <li class="list-group-item"><a class="menu" href="/products">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; &nbsp; Products Management</a></li>
+            <li class="list-group-item"><a class="menu" href="/admin_home">
+                    <span class="glyphicon glyphicon-home"></span>&nbsp; &nbsp; Home</a></li>
+            <?php if ($this->session->userdata('position_id') == 1) { ?>
+                <li class="list-group-item"><a class="menu" href="/products">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; &nbsp; Products Management </a>
+                </li>
+                <li class="list-group-item"><a class="menu" href="/userManagement">
+                        <span class="glyphicon glyphicon-user"></span>&nbsp; &nbsp; User Management</a>
+                </li>
+                <li class="list-group-item"><a class="menu" href="/viewOrders">
+                        <span class="glyphicon glyphicon-stats"></span>&nbsp; &nbsp; View Orders</a>
+                </li>
+                <li class="list-group-item"><a class="menu" href="/sales">
+                        <span class="glyphicon glyphicon-ok"></span>&nbsp; &nbsp; Sales</a>
+                </li>
+            <?php } ?>
             <li class="list-group-item"><a class="menu" href="/store">
                     <span class="glyphicon glyphicon-tasks"></span>&nbsp; &nbsp; Store</a></li>
             <li class="list-group-item"><a class="menu" href="/my_cart">
                     <span class="glyphicon glyphicon-briefcase"></span>&nbsp; &nbsp; My Cart</a></li>
-            <li class="list-group-item"><a class="menu" href="/userManagement">
-                    <span class="glyphicon glyphicon-user"></span>&nbsp; &nbsp; User Management</a></li>
+
             <li class="list-group-item"><a class="menu" href="/account_settings">
                     <span class="glyphicon glyphicon-cog"></span>&nbsp; &nbsp; Account Settings</a></li>
             <li class="list-group-item"><a class="menu" href="/logout">

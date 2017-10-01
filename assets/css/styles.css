@@ -874,3 +874,7 @@ td.tbl-header-main {
     margin-top: 10px;
     color: #FFFF6F;
 }
+
+.sorting_asc {
+    background-color: #2F5836 !important;
+}

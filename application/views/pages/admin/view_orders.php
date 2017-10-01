@@ -1,5 +1,5 @@
 <?php
-$product_record = $this->home->getCart();
+$product_record = $this->home->viewOrders();
 $total = 0;
 ?>
 <div class="col-md-2">
@@ -15,33 +15,35 @@ $total = 0;
 
         <div class="panel-body">
             <div class="col-md-12">
-                <?= $this->session->flashdata('message_from') ?>
+                <?= $this->session->flashdata('message') ?>
             </div>
             <?php if (count($product_record) != 0) { ?>
                 <div class="col-md-12" style="margin-top: 10px;">
-                    <table class="table table-bordered" style="padding: 10px;">
+                    <table class="table table-bordered display example_data" cellspacing="0" width="100%">
+                        <thead>
                         <tr>
-                            <th style="text-align: center">Image</th>
-                            <th style="text-align: center">Item Name</th>
-                            <th style="text-align: center">Quantity</th>
-                            <th style="text-align: center">Price</th>
-                            <th style="text-align: center">Sub Total</th>
-                            <th style="width: 30px">Action</th>
+                            <td style="text-align: center">Name</td>
+                            <td style="text-align: center">Item Name</td>
+                            <td style="text-align: center">Quantity</td>
+                            <td style="text-align: center">Price</td>
+                            <td style="text-align: center">Sub Total</td>
+                            <td style="width: 30px">Action</td>
                         </tr>
+
+                        </thead>
                         <tbody>
                         <?php foreach ($product_record as $val) { ?>
                             <tr>
-                                <td width="200">
-                                    <img src="/assets/images/<?= $val['image'] ?>" alt=""
-                                         style="max-width: 100px;text-align: center">
+                                <td>
+                                    <?= $val['first_name'] . ' ' . $val['last_name'] ?>
                                 </td>
                                 <td><?= $val['item_name'] ?></td>
                                 <td style="text-align: right"><?= $val['q'] ?></td>
                                 <td style="text-align: right"><?= $val['p'] ?></td>
                                 <td style="text-align: right"><?= number_format($val['q'] * $val['p'], 2, '.', ',') ?></td>
-                                <td><a href="/delete_from_cart/<?= $val['cart_id'] ?>" class="btn btn-danger btn-xs"
-                                       onclick="return confirm('Are you sure you want to delete this item?')"><span
-                                            class="glyphicon glyphicon-trash"></span></a></td>
+                                <td><a href="/paid_item/<?= $val['cart_id'] ?>" class="btn btn-primary btn-xs"
+                                       onclick="return confirm('Are you sure this item is already paid ?')"><span
+                                            class="glyphicon glyphicon-thumbs-up"></span> Paid</a></td>
                             </tr>
                             <?php
                             $subtotal = $val['q'] * $val['p'];
@@ -56,6 +58,10 @@ $total = 0;
                         </tr>
                         </tbody>
                     </table>
+
+
+
+
                     <div id="paypal-button" style="float: right;">
 
                     </div>
@@ -64,7 +70,7 @@ $total = 0;
             <?php } else { ?>
                 <div class="col-md-12">
                     <div class="alert alert-danger">
-                        No Item in Cart
+                        No Orders
                     </div>
                 </div>
 

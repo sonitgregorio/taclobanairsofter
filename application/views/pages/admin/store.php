@@ -11,6 +11,11 @@ $product_record = $this->home->getProducts();
                 <h4>Products</h4>
             </div>
         </div>
+        <div class="panel-body">
+
+        <div class="col-md-12" style="margin-top: 30px">
+            <?= $this->session->flashdata('message'); ?>
+        </div>
         <!--  Start of Product Listing      -->
 
         <?php foreach ($product_record as $val) { ?>
@@ -39,6 +44,7 @@ $product_record = $this->home->getProducts();
                                 <span class="tag1"></span>
                             </div>
                             <div class="description">
+                                <p style="color:red">Remaining Quantity : <?= $val['quantity'] ?></p>
                                 <p><?= $val['short_description'] ?> </p>
                             </div>
                             <div class="product-info smart-form">
@@ -65,6 +71,8 @@ $product_record = $this->home->getProducts();
                 </div>
             </div>
         <?php } ?>
+
+        </div>
         <!--End of First Product-->
 
         <!--Start Modal Here-->
@@ -77,7 +85,7 @@ $product_record = $this->home->getProducts();
                     <div class="modal-content">
                         <div class="modal-header panel-heading search">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
+                            <h4 class="modal-title">Quantity</h4>
                         </div>
                         <div class="modal-body">
                             <div class="show_alert">

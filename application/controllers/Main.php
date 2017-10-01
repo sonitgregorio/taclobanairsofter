@@ -5,6 +5,7 @@ class Main extends CI_Controller
 {
     public function index()
     {
+        $this->load->model('home');
         if($this->session->has_userdata('userid')){
             redirect('/admin_home');
         } else {
@@ -24,6 +25,7 @@ class Main extends CI_Controller
         if(!empty($result)){
             $this->session->set_userdata('userid', $result['id']);
             $this->session->set_userdata('cid', $result['pid']);
+            $this->session->set_userdata('position_id', $result['position']);
             $this->session->set_userdata('img', $result['image']);
             $this->session->set_userdata('name', $result['first_name'] . ' ' . $result['last_name']);
             redirect('/admin_home');

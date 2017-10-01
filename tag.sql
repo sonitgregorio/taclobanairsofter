@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2017 at 08:23 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Oct 01, 2017 at 02:01 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -42,7 +40,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `product`, `quantity`, `cid`, `price`, `status`) VALUES
-(1, 2, 2, 1, '300.00', 0);
+(3, 3, 5, 2, '50.00', 1),
+(8, 4, 5, 1, '50.00', 1),
+(9, 2, 5, 1, '300.00', 0);
 
 -- --------------------------------------------------------
 
@@ -69,8 +69,9 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `dob`, `pob`, `work`, `location`, `contact`, `email`, `gender`, `image`) VALUES
-(1, 'John Pauls', 'Bueno', '1993-02-07', 'Alang-Alang Leyte', 'Developer', 'Tacloban', '09172580624', 'support@gmail.com', 'male', '1258235de1be29d948095fa4d681a08e.png'),
-(2, 'Dearly', 'IDK', '0000-00-00', 'Tacloban City', '9172580624', 'Tacloban City', '+639172580624', 'test@gmail.com', 'male', 'person.png');
+(1, 'John Pauls', 'Bueno', '1993-02-07', 'Alang-Alang Leyte', 'Developer', 'Tacloban', '09172580624', 'support@gmail.com', 'male', '65427d0b0a44a32151b6000054d4f457.jpg'),
+(2, 'Dearly', 'IDK', '0000-00-00', 'Tacloban City', '9172580624', 'Tacloban City', '+639172580624', 'test@gmail.com', 'male', '16e96fac6e58a96a647a7508c02fc6fb.jpg'),
+(3, 'Test', 'Test', '2017-10-01', 'Tacloban', 'Developer', 'Tacloban', '09172580624', 'test@gmail.com', 'male', 'person.png');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ CREATE TABLE `position` (
 
 INSERT INTO `position` (`id`, `description`) VALUES
 (1, 'Administrator'),
-(2, 'Sales');
+(2, 'User');
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `item_name`, `quantity`, `serial`, `price`, `image`, `short_description`) VALUES
 (2, 'Item 2', 20, '3587654', 300.00, '41e94003ad95334c4e5fe43a7488b393.jpg', 'Sample Description for this item'),
 (3, 'test item 3', 20, '1324a682', 50.00, '4dce267dd0c505d418792c02bf6a46c3.jpg', 'Armalite'),
-(4, 'Product Image 1', 20, 'XYYTZZ', 50.00, '0c074389da664ac791fcbb71d882a88a.jpg', 'Gun');
+(4, 'Product Image 1', 15, 'XYYTZZ', 50.00, '0c074389da664ac791fcbb71d882a88a.jpg', 'Gun'),
+(5, 'Riffle', 50, '123456789', 1500.00, 'no_image.png', 'Colt® is the original manufacturer of the M16 rifles and M4 carbines used by the US Armed Forces; and through those 40+ years of experience has gained a wealth of knowledge in producing reliable weapons that function in harsh environments.');
 
 -- --------------------------------------------------------
 
@@ -136,9 +138,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `password`, `position`, `pid`, `username`) VALUES
 (1, '40be4e59b9a2a2b5dffb918c0e86b3d7', 1, 1, 'john.bueno'),
-(2, '40be4e59b9a2a2b5dffb918c0e86b3d7', 1, 2, 'sales'),
-(3, '098f6bcd4621d373cade4e832627b4f6', 1, 3, 'sales2'),
-(4, 'd41d8cd98f00b204e9800998ecf8427e', 1, 4, '');
+(2, '40be4e59b9a2a2b5dffb918c0e86b3d7', 2, 2, 'sales'),
+(3, '098f6bcd4621d373cade4e832627b4f6', 2, 3, 'sales2'),
+(4, 'd41d8cd98f00b204e9800998ecf8427e', 1, 4, ''),
+(5, '40be4e59b9a2a2b5dffb918c0e86b3d7', 2, 3, 'tacloban');
 
 --
 -- Indexes for dumped tables
@@ -182,12 +185,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `position`
 --
@@ -197,13 +200,12 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

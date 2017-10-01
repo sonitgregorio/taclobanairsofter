@@ -9,7 +9,7 @@ Class Home extends CI_Model
 //        $this->db->where('password', md5($password));
 //        $result = $this->db->get('users')->row_array();
         $password = md5($password);
-        return $this->db->query("SELECT a.id, a.pid, b.image, b.last_name, b.first_name FROM users a, contacts b WHERE a.username = '{$username}' AND a.password = '{$password}' AND b.id = a.pid")->row_array();
+        return $this->db->query("SELECT a.id, a.pid, b.image, b.last_name, b.first_name, a.position FROM users a, contacts b WHERE a.username = '{$username}' AND a.password = '{$password}' AND b.id = a.pid")->row_array();
     }
 
     public function insert_product($data)
@@ -83,7 +83,13 @@ Class Home extends CI_Model
         $this->db->delete('contacts');
     }
     public function getCart(){
-        return $this->db->query("SELECT b.*, a.quantity q, a.price p FROM `cart` a, `products` b WHERE a.cid = '{$this->session->userdata('cid')}' AND a.product = b.id")->result_array();
+        return $this->db->query("SELECT a.id cart_id, b.*, a.quantity q, a.price p FROM `cart` a, `products` b WHERE a.cid = '{$this->session->userdata('cid')}' AND a.product = b.id AND a.status = 0")->result_array();
 
+    }
+    public function viewOrders() {
+        return $this->db->query("SELECT a.id cart_id, b.*, a.quantity q, a.price p, c.first_name, c.last_name FROM `cart` a, `products` b, contacts c WHERE a.product = b.id AND a.status = 0 AND c.id = a.cid")->result_array();
+    }
+    public function viewSales() {
+        return $this->db->query("SELECT a.id cart_id, b.*, a.quantity q, a.price p, c.first_name, c.last_name FROM `cart` a, `products` b, contacts c WHERE a.product = b.id AND a.status = 1 AND c.id = a.cid")->result_array();
     }
 }

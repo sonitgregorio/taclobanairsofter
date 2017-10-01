@@ -86,8 +86,16 @@ class Admin extends CI_Controller
     public function delete_products($id)
     {
         $this->load->model('home');
-        $this->home->deleteProducts($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success">Product Deleted.</div>');
+        $this->db->where('id', $id);
+        $result = $this->db->get('products')->row_array();
+        if ($result['quantity'] <= 0) {
+            $this->home->deleteProducts($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success">Product Deleted.</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Item Cannot be Deleted.</div>');
+        }
+
+
         redirect('/products');
     }
 
@@ -124,7 +132,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/nav');
         $this->load->view('templates/admin_nav');
         $this->load->view('pages/admin/user_list', $record);
-        $this->load->view('pages/admin/announcement');
+//        $this->load->view('pages/admin/announcement');
         $this->load->view('templates/footer');
     }
 
@@ -214,6 +222,16 @@ class Admin extends CI_Controller
             'status' => $status
         );
         $this->db->insert('cart', $data);
+
+        $this->db->where('id', $pid);
+        $products = $this->db->get('products')->row_array();
+
+        $data = array(
+            'quantity' => $products['quantity'] - $quantity
+        );
+        $this->db->where('id', $pid);
+        $this->db->update('products', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Successfully Added</div>');
         redirect('/store');
     }
 
@@ -271,7 +289,66 @@ class Admin extends CI_Controller
         $this->db->update('contacts', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-success">Account Successfully Updated.</div>');
         redirect('/account_settings');
+    }
 
+    public function delete_from_cart($id)
+    {
+        $this->db->where('id', $id);
+        $cart = $this->db->get('cart')->row_array();
+        $this->db->where('id', $id);
+        $this->db->delete('cart');
+
+        $this->db->where('id', $cart['product']);
+        $products = $this->db->get('products')->row_array();
+
+        $this->db->where('id', $products['id']);
+        $data = array(
+            'quantity' => $cart['quantity'] + $products['quantity']
+        );
+        $this->db->update('products', $data);
+        $this->session->set_flashdata('message_from', '<div class="alert alert-success">Item removed!</div>');
+        redirect('/my_cart');
+
+    }
+
+    public function update_cart()
+    {
+        $data = array(
+            'status' => 1
+        );
+        $this->db->where('cid', $this->session->userdata('cid'));
+        $this->db->update('cart', $data);
+        $this->session->set_flashdata('message_from', '<div class="alert alert-success">Transaction Successfully Completed.</div>');
+        redirect('/my_cart');
+    }
+
+    public function viewOrders()
+    {
+        $this->load->model('home');
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('templates/admin_nav');
+        $this->load->view('pages/admin/view_orders');
+        $this->load->view('templates/footer');
+    }
+
+    public function sales()
+    {
+        $this->load->model('home');
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('templates/admin_nav');
+        $this->load->view('pages/admin/sales');
+        $this->load->view('templates/footer');
+    }
+    public function paid_item($id){
+        $data = array(
+            'status' => 1
+        );
+        $this->db->where('id', $id);
+        $this->db->update('cart', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Item successfully updated</div>');
+        redirect('/viewOrders');
     }
 
 }

@@ -6,7 +6,7 @@ $getuserList = $this->home->getAllUsers();
 
 </div>
 
-<div class="col-md-7 body-container">
+<div class="col-md-10 body-container">
     <div class="panel p-body">
         <div class="panel-heading search">
             <div class="col-md-6">
@@ -20,8 +20,6 @@ $getuserList = $this->home->getAllUsers();
                     <input type="hidden" name="record_id" value="<?= $member['id'] ?>" required>
 
                     <div class="col-md-6">
-
-
 
 
                         <div class="form-group">
@@ -67,14 +65,14 @@ $getuserList = $this->home->getAllUsers();
                                 </select>
                             </div>
                         </div>
-                        <?php if ($member['id'] == 0  ){ ?>
+                        <?php if ($member['id'] == 0) { ?>
 
-                        <div class="form-group">
-                            <label for="" class="col-sm-3 control-label">Username</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="username">
+                            <div class="form-group">
+                                <label for="" class="col-sm-3 control-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="username">
+                                </div>
                             </div>
-                        </div>
                         <?php } ?>
                     </div>
 
@@ -103,7 +101,8 @@ $getuserList = $this->home->getAllUsers();
                         <div class="form-group">
                             <label for="" class="col-sm-3 control-label">Email Address</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="email" value="<?= $member['email'] ?>">
+                                <input type="text" class="form-control" name="email" value="<?= $member['email'] ?>"
+                                       pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Invalid email address">
                             </div>
                         </div>
                         <?php if ($member['id'] == 0) { ?>
@@ -141,15 +140,25 @@ $getuserList = $this->home->getAllUsers();
                         User List
                     </div>
                     <div class="panel-body">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-bordered table-hover example_data" cellspacing="0"
+                               width="100%">
+                            <thead>
+
                             <tr>
-                                <th>Name</th>
-                                <th>Contact</th>
-                                <th>Email Address</th>
-                                <th>Work / Profession</th>
-                                <th>Office Location</th>
-                                <th>Action</th>
+                                <th style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Name</th>
+                                <th style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);"> Contact</th>
+                                <th style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Email
+                                    Address
+                                </th>
+                                <th style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Work /
+                                    Profession
+                                </th>
+                                <th style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Office
+                                    Location
+                                </th>
+                                <th style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Action</th>
                             </tr>
+                            </thead>
                             <tbody>
                             <?php foreach ($getuserList as $val) { ?>
                                 <tr>
@@ -161,8 +170,9 @@ $getuserList = $this->home->getAllUsers();
                                     <td style="width: 150px">
                                         <a href="/userManagement/edit/<?= $val['id'] ?>" class="label label-info">Edit
                                             &nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a href="/userManagement/delete/<?= $val['id'] ?>" class="label label-danger" onclick="confirm('Are you sure you want to delete this contact?')">Delete
-                                            &nbsp;&nbsp;<span class="glyphicon glyphicon-trash" ></span></a>
+                                        <a href="/userManagement/delete/<?= $val['id'] ?>" class="label label-danger"
+                                           onclick="confirm('Are you sure you want to delete this contact?')">Delete
+                                            &nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span></a>
                                     </td>
                                 </tr>
                             <?php } ?>
