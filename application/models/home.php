@@ -9,7 +9,7 @@ Class Home extends CI_Model
 //        $this->db->where('password', md5($password));
 //        $result = $this->db->get('users')->row_array();
         $password = md5($password);
-        return $this->db->query("SELECT a.id, a.pid, b.image, b.last_name, b.first_name, a.position FROM users a, contacts b WHERE a.username = '{$username}' AND a.password = '{$password}' AND b.id = a.pid")->row_array();
+        return $this->db->query("SELECT a.id, a.pid, b.image, b.last_name, b.first_name, a.position FROM users a, contacts b WHERE a.username = '{$username}' AND a.password = '{$password}' AND b.id = a.pid AND b.deleted = 0")->row_array();
     }
 
     public function insert_product($data)
@@ -70,6 +70,8 @@ Class Home extends CI_Model
 
     public function getAllUsers()
     {
+
+        $this->db->where('deleted', 0);
         return $this->db->get('contacts')->result_array();
     }
 
@@ -79,8 +81,9 @@ Class Home extends CI_Model
         return $this->db->get('contacts')->row_array();
     }
     public function deleteContactRecord($id){
+        $data = array('deleted' => 1);
         $this->db->where('id', $id);
-        $this->db->delete('contacts');
+        $this->db->update('contacts', $data);
     }
     public function getCart(){
         return $this->db->query("SELECT a.id cart_id, b.*, a.quantity q, a.price p FROM `cart` a, `products` b WHERE a.cid = '{$this->session->userdata('cid')}' AND a.product = b.id AND a.status = 0")->result_array();

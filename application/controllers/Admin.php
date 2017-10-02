@@ -95,7 +95,6 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger">Item Cannot be Deleted.</div>');
         }
 
-
         redirect('/products');
     }
 
@@ -199,6 +198,9 @@ class Admin extends CI_Controller
     public function deleteContact($id)
     {
         $this->load->model('home');
+
+
+
         $this->home->deleteContactRecord($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success">Member Deleted.</div>');
         redirect('userManagement');

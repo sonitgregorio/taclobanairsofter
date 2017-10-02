@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2017 at 02:01 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: Oct 02, 2017 at 05:32 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -42,7 +44,7 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`id`, `product`, `quantity`, `cid`, `price`, `status`) VALUES
 (3, 3, 5, 2, '50.00', 1),
 (8, 4, 5, 1, '50.00', 1),
-(9, 2, 5, 1, '300.00', 0);
+(9, 2, 5, 1, '300.00', 1);
 
 -- --------------------------------------------------------
 
@@ -61,17 +63,21 @@ CREATE TABLE `contacts` (
   `contact` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `image` text NOT NULL
+  `image` text NOT NULL,
+  `deleted` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `dob`, `pob`, `work`, `location`, `contact`, `email`, `gender`, `image`) VALUES
-(1, 'John Pauls', 'Bueno', '1993-02-07', 'Alang-Alang Leyte', 'Developer', 'Tacloban', '09172580624', 'support@gmail.com', 'male', '65427d0b0a44a32151b6000054d4f457.jpg'),
-(2, 'Dearly', 'IDK', '0000-00-00', 'Tacloban City', '9172580624', 'Tacloban City', '+639172580624', 'test@gmail.com', 'male', '16e96fac6e58a96a647a7508c02fc6fb.jpg'),
-(3, 'Test', 'Test', '2017-10-01', 'Tacloban', 'Developer', 'Tacloban', '09172580624', 'test@gmail.com', 'male', 'person.png');
+INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `dob`, `pob`, `work`, `location`, `contact`, `email`, `gender`, `image`, `deleted`) VALUES
+(1, 'John Pauls', 'Bueno', '1993-02-07', 'Alang-Alang Leyte', 'Developer', 'Tacloban', '09172580624', 'support@gmail.com', 'male', '65427d0b0a44a32151b6000054d4f457.jpg', 0),
+(2, 'Dearly', 'IDK', '0000-00-00', 'Tacloban City', '9172580624', 'Tacloban City', '+639172580624', 'test@gmail.com', 'male', '16e96fac6e58a96a647a7508c02fc6fb.jpg', 0),
+(3, 'Test', 'Test', '2017-10-01', 'Tacloban', 'Developer', 'Tacloban', '09172580624', 'test@gmail.com', 'male', 'person.png', 1),
+(4, 'Test', 'Contact', '2017-10-02', 'Tacloban', 'Developer', 'Tacloban', '09172580624', 'test@gmail.com', 'male', 'person.png', 0),
+(5, 'Tacloban', 'Try', '2017-10-02', 'Tacloban', 'Fighter', 'Tacloban', '064613274968', 'taclo@gmail.com', 'male', 'person.png', 1),
+(6, 'Dev', 'Software', '2017-10-02', 'Tacloban', 'Developer', 'Tacloban', '09090909', 'test@gmail.com', 'male', 'person.png', 0);
 
 -- --------------------------------------------------------
 
@@ -141,7 +147,10 @@ INSERT INTO `users` (`id`, `password`, `position`, `pid`, `username`) VALUES
 (2, '40be4e59b9a2a2b5dffb918c0e86b3d7', 2, 2, 'sales'),
 (3, '098f6bcd4621d373cade4e832627b4f6', 2, 3, 'sales2'),
 (4, 'd41d8cd98f00b204e9800998ecf8427e', 1, 4, ''),
-(5, '40be4e59b9a2a2b5dffb918c0e86b3d7', 2, 3, 'tacloban');
+(5, '40be4e59b9a2a2b5dffb918c0e86b3d7', 2, 3, 'tacloban'),
+(6, '5858ea228cc2edf88721699b2c8638e5', 2, 4, 'test.contact'),
+(7, '5858ea228cc2edf88721699b2c8638e5', 2, 5, 'tac.try'),
+(8, '5858ea228cc2edf88721699b2c8638e5', 2, 6, 'sample');
 
 --
 -- Indexes for dumped tables
@@ -190,7 +199,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `position`
 --
@@ -205,7 +214,8 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
