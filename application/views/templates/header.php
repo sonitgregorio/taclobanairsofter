@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>TAG</title>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
 
     <link rel="icon" type="image/jpg" href="<?php echo base_url('assets/images/5155029.jpg'); ?>">
@@ -25,6 +24,7 @@
 <!--    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/styles.css'); ?>">
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
 
 

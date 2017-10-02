@@ -18,6 +18,7 @@ $getuserList = $this->home->getAllUsers();
                 <?= $this->session->flashdata('message'); ?>
                 <form action="/save_contact" class="form-horizontal" method="post">
                     <input type="hidden" name="record_id" value="<?= $member['id'] ?>" required>
+                    <input type="hidden" name="type_of_registration" value="0">
 
                     <div class="col-md-6">
 

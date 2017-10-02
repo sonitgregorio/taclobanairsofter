@@ -169,7 +169,15 @@ class Admin extends CI_Controller
                 $user_access['pid'] = $return_id;
                 $this->home->insertUserAccess($user_access);
                 $this->session->set_flashdata('message', '<div class="alert alert-success">Member Added.</div>');
-                redirect('/userManagement');
+
+
+                if  ($this->input->post('type_of_registration') == 0)
+                {
+                    redirect('/userManagement');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success">Account Successfully Created. Please Login .</div>');
+                    redirect('/');
+                }
 
             } else {
                 $record['member']['id'] = '';

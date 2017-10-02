@@ -11,6 +11,12 @@
 
 
     $(document).ready(function () {
+
+        $('.sign_up').click(function () {
+            $('.sign_up_modal').modal('show');
+        });
+
+
         $('.example_data').DataTable();
 
         $('.modal_click').click(function () {
@@ -41,6 +47,7 @@
     });
 </script>
 <?php if (uri_string() == 'my_cart') { ?>
+
     <script>
         var url = window.location.href;
         var searchString = url.search('paypal-home');
@@ -53,13 +60,15 @@
             commit: true, // Show a 'Pay Now' button
             payment: function (data, actions) {
                 var total = $('#total').html();
+
                 var totals = Number(total).toFixed(2);
+                console.log(total);
                 var currency = 'PHP';
                 return actions.payment.create({
                     transactions: [
                         {
                             amount: {
-                                total: totals,
+                                total: total,
                                 currency: currency
                             }
                         }

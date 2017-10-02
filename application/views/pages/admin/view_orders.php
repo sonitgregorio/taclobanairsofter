@@ -22,12 +22,12 @@ $total = 0;
                     <table class="table table-bordered display example_data" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <td style="text-align: center">Name</td>
-                            <td style="text-align: center">Item Name</td>
-                            <td style="text-align: center">Quantity</td>
-                            <td style="text-align: center">Price</td>
-                            <td style="text-align: center">Sub Total</td>
-                            <td style="width: 30px">Action</td>
+                            <td style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Name</td>
+                            <td style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Item Name</td>
+                            <td style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Quantity</td>
+                            <td style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Price</td>
+                            <td style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Sub Total</td>
+                            <td style="background-image: linear-gradient(#8EB891, #799F7C, #698A6B);">Action</td>
                         </tr>
 
                         </thead>
@@ -49,18 +49,19 @@ $total = 0;
                             $subtotal = $val['q'] * $val['p'];
                             $total += $subtotal;
                         } ?>
-                        <tr>
-                            <th colspan="4" style="text-align: center">Grand Total</th>
-                            <th style="text-align: right"><span
-                                    id="total"><?= number_format($total, 2, '.', ',') ?></span>
-                            </th>
-                            <th></th>
-                        </tr>
+
                         </tbody>
                     </table>
 
+                    <br/>
+                    <div class="col-md-9">
 
-
+                    </div>
+                    <div class="col-md-3">
+                        <div class="alert alert-success">
+                            <span style="font-size: 20px"><strong>GRAND TOTAL : <?= number_format($total, 2, '.', ',') ?></strong></span>
+                        </div>
+                    </div>
 
                     <div id="paypal-button" style="float: right;">
 
