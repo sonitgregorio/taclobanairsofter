@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2017 at 05:32 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Oct 02, 2017 at 06:29 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -44,7 +42,8 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`id`, `product`, `quantity`, `cid`, `price`, `status`) VALUES
 (3, 3, 5, 2, '50.00', 1),
 (8, 4, 5, 1, '50.00', 1),
-(9, 2, 5, 1, '300.00', 1);
+(9, 2, 5, 1, '300.00', 1),
+(10, 2, 20, 1, '300.00', 0);
 
 -- --------------------------------------------------------
 
@@ -119,7 +118,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `item_name`, `quantity`, `serial`, `price`, `image`, `short_description`) VALUES
-(2, 'Item 2', 20, '3587654', 300.00, '41e94003ad95334c4e5fe43a7488b393.jpg', 'Sample Description for this item'),
+(2, 'Item 2', 0, '3587654', 300.00, '41e94003ad95334c4e5fe43a7488b393.jpg', 'Sample Description for this item'),
 (3, 'test item 3', 20, '1324a682', 50.00, '4dce267dd0c505d418792c02bf6a46c3.jpg', 'Armalite'),
 (4, 'Product Image 1', 15, 'XYYTZZ', 50.00, '0c074389da664ac791fcbb71d882a88a.jpg', 'Gun'),
 (5, 'Riffle', 50, '123456789', 1500.00, 'no_image.png', 'Colt® is the original manufacturer of the M16 rifles and M4 carbines used by the US Armed Forces; and through those 40+ years of experience has gained a wealth of knowledge in producing reliable weapons that function in harsh environments.');
@@ -194,7 +193,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `contacts`
 --
@@ -214,8 +213,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -86,16 +86,30 @@ class Admin extends CI_Controller
     public function delete_products($id)
     {
         $this->load->model('home');
-        $this->db->where('id', $id);
-        $result = $this->db->get('products')->row_array();
-        if ($result['quantity'] <= 0) {
-            $this->home->deleteProducts($id);
-            $this->session->set_flashdata('message', '<div class="alert alert-success">Product Deleted.</div>');
-        } else {
+
+
+        $this->db->where('product', $id);
+        $this->db->where('status', 0);
+        $cart = $this->db->get('cart')->result_array();
+
+        if(count($cart) != 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger">Item Cannot be Deleted.</div>');
+            redirect('/products');
+        } else {
+            $this->db->where('id', $id);
+            $result = $this->db->get('products')->row_array();
+            if ($result['quantity'] <= 0) {
+                $this->home->deleteProducts($id);
+                $this->session->set_flashdata('message', '<div class="alert alert-success">Product Deleted.</div>');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger">Item Cannot be Deleted.</div>');
+            }
+            redirect('/products');
         }
 
-        redirect('/products');
+
+
+
     }
 
     public function userManagement($id = 0)
